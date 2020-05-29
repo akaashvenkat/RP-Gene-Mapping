@@ -1,0 +1,4 @@
+The following genes cannot be found on the online STRING database, and will not be used in this program:
+
+TTC8a
+UTY

@@ -1,0 +1,4 @@
+The following genes have been renamed, as per the online STRING database:
+
+SC5DL => SC5D
+C5orf4 => FAXDC2

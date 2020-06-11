@@ -1,0 +1,12 @@
+The following pairings (B Genes : D Genes) indicate that the B Gene requires its respective D Gene to serve as an intermediate gene to connect it to the rest of the map of genes:
+
+AGBL5 : EVA1A
+ARHGAP22 : RHOA
+CDON : CDH2
+GNA13 : GNG2
+HGSNAT : ITGB2
+KIZ : PLK1
+POMGNT1 : DOLK
+REEP6 : GNGT1
+SLC7A14 : GART
+TRNT1 : PNPT1

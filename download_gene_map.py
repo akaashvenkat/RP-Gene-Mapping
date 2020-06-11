@@ -15,6 +15,7 @@ import time
 
 GENE_DATABASE_FILE = "info_files/gene_database.txt"
 GENE_GROUP_FILE = "info_files/gene_group.txt"
+INTERMEDIATE_GENES_FILE = "info_files/intermediate_genes.txt"
 UNIDENTIFIABLE_GENE_FILE = "info_files/unidentifiable_genes.txt"
 CHANGED_NAME_GENE_FILE = "info_files/changed_name_genes.txt"
 
@@ -111,6 +112,21 @@ def writeGeneGroups():
         grouping_file.write("\n\n\n")
 
     grouping_file.close()
+
+
+
+def writeIntermediateGenes():
+    os.system('touch ' + INTERMEDIATE_GENES_FILE)
+    intermediates_file = open(INTERMEDIATE_GENES_FILE, "w")
+    if len(B_D_PAIR) != 0:
+        intermediates_file = open(INTERMEDIATE_GENES_FILE, "w")
+        intermediates_file.write("The following pairings (B Genes : D Genes) indicate that the B Gene requires its respective D Gene to serve as an intermediate gene to connect it to the rest of the map of genes:\n\n")
+        sorted_pairs = sorted(B_D_PAIR.items())
+        for b_gene, d_gene in sorted_pairs:
+            intermediates_file.write(b_gene + " : " + d_gene + "\n")
+        intermediates_file.close()
+    else:
+        os.system('rm ' + INTERMEDIATE_GENES_FILE)
 
 
 
@@ -377,6 +393,7 @@ def main():
     parseInput()
 
     writeGeneGroups()
+    writeIntermediateGenes()
     writeUnidentifiable()
     writeChangedName()
 

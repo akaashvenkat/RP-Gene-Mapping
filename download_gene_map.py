@@ -284,7 +284,7 @@ def find_neighbor(input_gene):
         return -1
     if "Please select one from the list below" in driver.page_source:
         driver.find_element_by_xpath("//*[@id='proceed_form']/div[1]/div/div[2]/a[2]").click()
-    driver.find_element_by_id("bottom_page_selector_settings").click()
+    driver.find_element_by_xpath("//*[@id='bottom_page_selector_settings']").click()
     driver.find_element_by_xpath("//*[@id='bottom_page_selector_legend']").click()
     page_data = driver.page_source
     split1 = page_data.split("<td class=\"td_name middle_row first_row last_row\" onclick=")

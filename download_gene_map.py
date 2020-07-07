@@ -356,7 +356,7 @@ def download_svg(gene_list):
     driver.find_element_by_id("bottom_page_selector_table").click()
     time.sleep(5)
     driver.find_element_by_id("bottom_page_selector_settings").click()
-    time.sleep(15)
+    time.sleep(5)
     driver.find_element_by_id("confidence").send_keys(" ")
     time.sleep(10)
     driver.find_element_by_id("block_structures").send_keys(" ")
@@ -369,7 +369,7 @@ def download_svg(gene_list):
     time.sleep(25)
     element = driver.find_element_by_xpath("//*[@id='bottom_page_selector_table_container']/div/div[2]/div/div[3]/div[2]/a")
     actions = ActionChains(driver)
-    actions.move_to_element(element).click().perform()  
+    actions.move_to_element(element).click().perform()
     time.sleep(30)
     driver.quit()
 

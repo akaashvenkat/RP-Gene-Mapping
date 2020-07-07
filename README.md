@@ -7,6 +7,9 @@ Note: The files here were run on Python 2.7.16.
 
 - - - -
 
+Note that it's not necessary to setup and run the code from scratch as the SVG files included in the paper are found in the svg_files folder.
+
+
 To setup and run the code:
 
 * Download the code from the repository

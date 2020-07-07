@@ -14,3 +14,7 @@ To setup and run the code:
 * Using Terminal or Powershell, run "python download_gene_map.py"
     * Due to the heavy load of automation in this program, there is a chance running this program will crash. If this happens, just re-run "python download_gene_map.py" and the program will pick up from where it left off.
 * Once "download_gene_map.py" is done running, there will be a file called "string_vector_graphic.svg" that will be saved to your computer's Downloads folder. Relocate that SVG file into the svg_files folder, and rename the file as "original_gene_map.svg"
+* Using Terminal or Powershell, run "python restructure_gene_map.py"
+* Using Terminal or Powershell, run "python recolor_gene_map.py"
+
+The final SVG files can be found in the svg_files folder.

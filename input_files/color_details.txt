@@ -1,0 +1,11 @@
+Group A: (52,152,219)
+Group B: (255,255,0)
+Group C: (255,0,0)
+Group D: (0,153,0)
+
+Group 1 Connections: #FC6C6C
+Group 2 Connections: #84C8D9
+Group 3 Connections: #27FF00
+Group 4 Connections: #B287DA
+D Gene Connections: #70706E
+Intermediate Connections: #000000

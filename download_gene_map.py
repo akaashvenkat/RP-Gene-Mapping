@@ -2,6 +2,7 @@
 # Author:           Akaash Venkat, Audi Liu
 
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from os.path import expanduser
 import glob
 import math
@@ -110,7 +111,6 @@ def writeGeneGroups():
         for gene in cluster:
             grouping_file.write(gene + "\n")
         grouping_file.write("\n\n\n")
-
     grouping_file.close()
 
 
@@ -171,13 +171,10 @@ def identifyGroupA(gene_list):
     for i in range(0, len(gene_list)):
         gene = gene_list[i][0]
         gene_neighbors = gene_list[i][1]
-
         for j in range(0, len(gene_list)):
             if i == j:
                 continue
-
             other_gene = gene_list[j][0]
-
             if other_gene in gene_neighbors.keys():
                 GROUP[gene] = "A"
 
@@ -185,11 +182,9 @@ def identifyGroupA(gene_list):
 
 def identifyGroupB(gene_list):
     for i in range(0, len(gene_list)):
-
         content_list = []
         gene = gene_list[i][0]
         gene_neighbors = gene_list[i][1]
-
 
         if GROUP[gene] == "A":
             continue
@@ -219,12 +214,11 @@ def identifyGroupB(gene_list):
 
 def parseInput():
     os.system('clear')
-    arg = "input_files/original_gene_list.txt"
     content = []
     input_genes = []
     input_list = []
 
-    with open(arg) as arg_input:
+    with open("input_files/original_gene_list.txt") as arg_input:
         content = arg_input.readlines()
 
     for gene in content:
@@ -245,7 +239,6 @@ def parseInput():
                 break
 
         if already_present == False:
-
             if gene in CHANGED_NAME:
                 break
             if gene in UNIDENTIFIABLE_LIST:
@@ -296,19 +289,26 @@ def find_neighbor(input_gene):
     driver.find_element_by_id("primary_input:single_identifier").send_keys(input_gene)
     driver.find_element_by_id("species_text_single_identifier").send_keys("Homo sapiens")
     driver.find_element_by_xpath("//*[@id='input_form_single_identifier']/div[4]/a").click()
-    if "Sorry, STRING did not find a protein" in driver.page_source:
+    time.sleep(5)
+    page_data = driver.page_source
+    time.sleep(5)
+    if "Sorry, STRING did not find a protein" in page_data:
         return -1
-    if "Please select one from the list below" in driver.page_source:
+    if "Please select one" in page_data:
         driver.find_element_by_xpath("//*[@id='proceed_form']/div[1]/div/div[2]/a[2]").click()
+    time.sleep(15)
     driver.find_element_by_xpath("//*[@id='bottom_page_selector_settings']").click()
     driver.find_element_by_xpath("//*[@id='bottom_page_selector_legend']").click()
+    time.sleep(5)
     page_data = driver.page_source
+    time.sleep(5)
     split1 = page_data.split("<td class=\"td_name middle_row first_row last_row\" onclick=")
     split2 = split1[1].split("</td>")
     split3 = split2[0].split("\">")
     correct_gene_name = split3[1]
     if input_gene != correct_gene_name:
         return str(correct_gene_name)
+    time.sleep(15)
     driver.find_element_by_xpath("//*[@id='bottom_page_selector_table']").click()
     driver.find_element_by_id("bottom_page_selector_settings").click()
     driver.find_element_by_xpath("//*[@id='standard_parameters']/div/div[1]/div[3]/div[2]/div[2]/div[1]/label").click()
@@ -317,14 +317,16 @@ def find_neighbor(input_gene):
     driver.find_element_by_id("custom_limit_input").send_keys("500")
     time.sleep(5)
     driver.find_element_by_xpath("//*[@id='standard_parameters']/div/div[1]/div[5]/a").click()
-    time.sleep(10)
+    time.sleep(20)
     driver.find_element_by_id("bottom_page_selector_table").click()
     driver.find_element_by_xpath("//*[@id='bottom_page_selector_legend']").click()
     connectors = driver.find_elements_by_class_name("linked_item_row")
+    time.sleep(5)
     for connector in connectors:
         neighbor = str(connector.text.split(' ')[0].split('\n')[0])
         confidence_value = str(connector.text.split(' ')[-1].split('\n')[-1])
         gene_connectors[neighbor] = float(confidence_value)
+    driver.quit()
     return gene_connectors
 
 
@@ -346,7 +348,9 @@ def download_svg(gene_list):
     driver.find_element_by_id("species_text_multiple_identifiers").send_keys("Homo sapiens")
     driver.find_element_by_xpath("//*[@id='input_form_multiple_identifiers']/div[5]/a").click()
     time.sleep(5)
-    if "The following proteins in" in driver.page_source and "appear to match your input" in driver.page_source:
+    page_data = driver.page_source
+    time.sleep(5)
+    if "The following proteins in" in page_data and "appear to match your input" in page_data:
         driver.find_element_by_xpath("//*[@id='proceed_form']/div[1]/div/div[2]/a[3]").click()
     time.sleep(20)
     driver.find_element_by_id("bottom_page_selector_table").click()
@@ -363,8 +367,11 @@ def download_svg(gene_list):
     time.sleep(10)
     driver.find_element_by_id("bottom_page_selector_table").click()
     time.sleep(25)
-    driver.find_element_by_xpath("//*[@id='bottom_page_selector_table_container']/div/div[2]/div/div[3]/div[2]/a").click()
+    element = driver.find_element_by_xpath("//*[@id='bottom_page_selector_table_container']/div/div[2]/div/div[3]/div[2]/a")
+    actions = ActionChains(driver)
+    actions.move_to_element(element).click().perform()  
     time.sleep(30)
+    driver.quit()
 
 
 

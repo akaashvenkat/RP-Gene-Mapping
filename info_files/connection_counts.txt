@@ -1,0 +1,26 @@
+The following indicates the number of connections each group of genes has with another group.
+
+Group 1
+	Number of connections with other Group 1 Genes: 10
+	Number of connections with Group 2 Genes: 81
+	Number of connections with Group 3 Genes: 10
+	Number of connections with Group 4 Genes: 80
+	Number of connections with Intermediate Genes: 4
+Group 2
+	Number of connections with Group 1 Genes: 81
+	Number of connections with other Group 2 Genes: 415
+	Number of connections with Group 3 Genes: 60
+	Number of connections with Group 4 Genes: 386
+	Number of connections with Intermediate Genes: 65
+Group 3
+	Number of connections with Group 1 Genes: 10
+	Number of connections with Group 2 Genes: 60
+	Number of connections with other Group 3 Genes: 32
+	Number of connections with Group 4 Genes: 92
+	Number of connections with Intermediate Genes: 3
+Group 4
+	Number of connections with Group 1 Genes: 80
+	Number of connections with Group 2 Genes: 386
+	Number of connections with Group 3 Genes: 92
+	Number of connections with other Group 4 Genes: 396
+	Number of connections with Intermediate Genes: 18

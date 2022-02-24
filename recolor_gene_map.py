@@ -277,7 +277,8 @@ def main():
     content_2 = updateEdgeColor(content_2, GENE_GROUPING[2], ["CDON", "AGBL5", "TRNT1", "KIZ", "ARHGAP22", "GNA13", "REEP6", "SLC7A14", "HGSNAT"])
     content_3 = updateEdgeColor(content_3, GENE_GROUPING[3], [])
     content_4 = updateEdgeColor(content_4, GENE_GROUPING[4], ["POMGNT1"])
-
+    
+    writeToFile(content, "svg_files/restructured_colored_map.svg")
     writeToFile(content_1, "svg_files/group1_colored_map.svg")
     writeToFile(content_2, "svg_files/group2_colored_map.svg")
     writeToFile(content_3, "svg_files/group3_colored_map.svg")
